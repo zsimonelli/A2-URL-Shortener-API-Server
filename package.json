@@ -15,7 +15,8 @@
   "author": "Thuccy Nguyen, Jessica Green, Zachary Simonelli, Johan Thomas Sajan",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>URL Shortener API</title>
+  </head>
+
+  <body>
+    <div class="d-flex justify-content-center">
+      <h1 class="display-5">URL Shortener API</h1>
+    </div>
+    <div class="p-3 d-flex justify-content-center">
+      <label class="lead"
+        >Long Url
+        <input type="text" name="lurl" id="lurl" />
+      </label>
+    </div>
+    <div class="d-flex p-1 justify-content-center">
+      <button id="shorten-btn" class="btn btn-info">Shorten</button> <br />
+      &nbsp&nbsp
+      <button id="mapping-btn-lurl" class="btn btn-warning">Mapping</button>
+    </div>
+    <div class="p-3 d-flex justify-content-center">
+      <label class="lead"
+        >Short URL
+        <input type="text" name="surl" id="surl" />
+      </label>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button id="redirect-btn" class="btn btn-danger">Redirect</button> <br />
+      &nbsp&nbsp
+      <button id="mapping-btn-surl" class="btn btn-warning">Mapping</button>
+    </div>
+    <p class="d-flex justify-content-center lead">
+      <br />
+      There are three things you can do here. <br />
+      1) If you input a long URL you will get a shortened URL. <br />
+      2) If you input an already shortened URL, you will get redirected to
+      original URL page. <br />
+      3) If you input the word 'mapping' you will get a JSON object mapping of
+      the long and shortened URL pairs.
+    </p>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $("#shorten-btn").click(() => {
+        const lurl = $("#lurl").val();
+        $.post("/shorten/" + lurl, function (response) {
+          return window.location.replace(
+            "http://localhost:5000/results/" + index
+          );
+        });
+      });
+
+      $("#mapping-btn-lurl").click(() => {
+        const lurl = $("#lurl").val();
+        return window.location.replace("http://localhost:5000/mapping/" + lurl);
+      });
+      $("#mapping-btn-surl").click(() => {
+        const surl = $("#surl").val();
+        return window.location.replace("http://localhost:5000/mapping/" + surl);
+      });
+      $("#redirect-btn").click(() => {
+        const surl = $("#surl").val();
+        return window.location.replace("http://localhost:5000/api/" + surl);
+      });
+    });
+  </script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"
+  ></script>
+</html>
